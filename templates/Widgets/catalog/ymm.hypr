@@ -1,0 +1,11 @@
+<div data-module="ymm">
+  <div data-ymm-config="{{model.config}}"></div>
+  <label for='year'>Year:</label>
+  <select id='year' name='year'></select>
+  <label for="make">Make:</label>
+  <select disabled id='make' name='make'></select>
+  <label for="model">Model:</label>
+  <select disabled id='model' name="model"></select>
+  <button class="mz-button" type="submit" disabled name="filter" id="filterYmm">Filter</button>
+</div>
+{% require_script 'widgets/ymmStartup' %}

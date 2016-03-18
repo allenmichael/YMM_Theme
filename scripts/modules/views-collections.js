@@ -8,8 +8,9 @@ define([
     'underscore',
     'modules/url-dispatcher',
     'modules/intent-emitter',
-    'modules/get-partial-view'
-], function(Backbone, _, UrlDispatcher, IntentEmitter, getPartialView) {
+    'modules/get-partial-view',
+    'widgets/ymm'
+], function(Backbone, _, UrlDispatcher, IntentEmitter, getPartialView, YmmHandler) {
 
     function factory(conf) {
 
@@ -22,6 +23,9 @@ define([
             _$body.html(response.body);
             if (url) _dispatcher.replace(url);
             _$body.removeClass('mz-loading');
+            
+            YmmHandler.init();
+            YmmHandler.bindEventListeners();
         }
 
         function showError(error) {

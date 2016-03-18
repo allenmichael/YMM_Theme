@@ -401,6 +401,12 @@
     "maxProductSummaryWords": 40,
     "maxTopLevelNavItems": 8,
     "maxTopLevelNavLabelLength": 20,
+    "ymmAttributeFQN": "Grobelny~year-make-model",
+    "hideYmmFacet": true,
+    "ymmYearDb": "year@grobelny",
+    "ymmYearDbId": "years",
+    "ymmYearMakeDb": "yearmake@grobelny",
+    "ymmYearMakeModelDb": "yearmakemodel@grobelny",
     "pageSizeOptions": [
       15,
       25,
@@ -1078,6 +1084,19 @@
       "editView": "taco-dealoftheday-widgeteditor",
       "icon": "/resources/admin/widgets/28_deal_of_the_day.png",
       "id": "deal-of-the-day",
+      "validPageTypes": [
+        "*"
+      ]
+    },
+    {
+      "category": "catalog",
+      "defaultConfig": {
+        "attributeFQN": "Grobelny~year-make-model"
+      },
+      "displayName": "Year Make Model",
+      "displayTemplate": "catalog/ymm",
+      "icon": "/resources/admin/widgets/07_code.png",
+      "id": "ymm",
       "validPageTypes": [
         "*"
       ]

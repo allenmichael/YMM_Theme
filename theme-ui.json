@@ -238,6 +238,28 @@
                     "allowBlank": false
                 }
             ]
+        },
+        {
+            "xtype": "panel",
+            "title": "Year Make Model Settings",
+            "collapsed": false,
+            "items": [
+                {
+                    "fieldLabel": "Year Make Model Attribute Identifier",
+                    "xtype": "mz-input-text",
+                    "name": "ymmAttributeFQN",
+                    "hideTrigger": false,
+                    "allowDecimal": false,
+                    "allowBlank": false,
+                    "storeFrom": "ymmAttributeFQN"
+                },
+                {
+                    "xtype": "mz-input-checkbox",
+                    "name": "hideYmmFacet",
+                    "fieldLabel": "Hide the Year Make Model facet on Category pages",
+                    "enableIf": "hideYmmFacet"
+                }
+            ]
         }
     ]
 }
