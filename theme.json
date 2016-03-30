@@ -401,7 +401,7 @@
     "maxProductSummaryWords": 40,
     "maxTopLevelNavItems": 8,
     "maxTopLevelNavLabelLength": 20,
-    "ymmAttributeFQN": "Grobelny~year-make-model",
+    "ymmAttributeFQN": "Tenant~year-make-model",
     "hideYmmFacet": true,
     "ymmYearDb": "year@grobelny",
     "ymmYearDbId": "years",
@@ -1091,7 +1091,7 @@
     {
       "category": "catalog",
       "defaultConfig": {
-        "attributeFQN": "Grobelny~year-make-model"
+        "attributeFQN": "Tenant~year-make-model"
       },
       "displayName": "Year Make Model",
       "displayTemplate": "catalog/ymm",

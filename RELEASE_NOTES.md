@@ -1,1 +1,0 @@
-View the full release notes for the Mozu Core Theme at the [Mozu Developer Center](http://developer.mozu.com).
