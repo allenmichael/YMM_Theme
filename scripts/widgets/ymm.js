@@ -154,6 +154,7 @@ define(['modules/jquery-mozu', 'underscore', 'modules/api', 'hyprlive'],
 
       $('#filterYmm').click(function(e) {
         e.preventDefault();
+        me.baseUrl = window.location.href;
         sessionStorage.setItem(me.sessionStorageKeyYear, me.selectedYear);
         sessionStorage.setItem(me.sessionStorageKeyMake, me.selectedMake);
         sessionStorage.setItem(me.sessionStorageKeyModel, me.selectedModel);
@@ -245,26 +246,50 @@ define(['modules/jquery-mozu', 'underscore', 'modules/api', 'hyprlive'],
       var alteredUrl;
 
       if (hasYmmFilter) {
-        this.baseUrl = this.baseUrl.slice(0, this.baseUrl.indexOf('?'));
-        hasExistingQueryParams = false;
-        endsWithAmpersand = false;
-      }
-
-      if (hasExistingQueryParams) {
-        if (endsWithAmpersand) {
-          redirectUrl = this.baseUrl + this.facetTemplate + facetValue;
-        } else {
-          redirectUrl = this.baseUrl + '&' + this.facetTemplate + facetValue;
+        try {
+          var temporaryUrl = decodeURIComponent(this.baseUrl);
+          var queryString = temporaryUrl.split('?');
+          queryString = queryString[1];
+          var params = queryString.split('=');
+          var facetValues = params[params.indexOf('facetValueFilter') + 1];
+          facetValues = facetValues.split(',');
+          var ymm = facetValues.filter(function(value) { return (value.indexOf("Tenant~year-make-model") >= 0) ? true : false; });
+          if (ymm) {
+            ymm = ymm[0];
+            var urlString1 = temporaryUrl.substring(0, temporaryUrl.indexOf(ymm));
+            var urlString2 = temporaryUrl.substring(temporaryUrl.indexOf(ymm) + ymm.length);
+            if (urlString2[0] === ',') {
+              urlString2 = urlString2.substring(1);
+            }
+            if (urlString2[urlString2.length - 1] === '&') {
+              urlString2 = urlString2.substring(0, urlString2.length - 1);
+            }
+            redirectUrl = urlString1 + urlString2;
+            redirectUrl = redirectUrl + ',' + this.attribute + ':' + facetValue;
+            window.location.href = redirectUrl;
+          }
+        } catch (err) {
+          console.log(err);
+          window.location.href = this.baseUrl;
         }
       } else {
-        if (this.baseUrl.indexOf('?') > 0) {
-          alteredUrl = this.baseUrl.slice(0, this.baseUrl.indexOf('?'));
-          redirectUrl = alteredUrl + '?' + this.facetTemplate + facetValue + '&';
+
+        if (hasExistingQueryParams) {
+          if (endsWithAmpersand) {
+            redirectUrl = this.baseUrl + this.facetTemplate + facetValue;
+          } else {
+            redirectUrl = this.baseUrl + '&' + this.facetTemplate + facetValue;
+          }
         } else {
-          redirectUrl = this.baseUrl + '?' + this.facetTemplate + facetValue + '&';
+          if (this.baseUrl.indexOf('?') > 0) {
+            alteredUrl = this.baseUrl.slice(0, this.baseUrl.indexOf('?'));
+            redirectUrl = alteredUrl + '?' + this.facetTemplate + facetValue + '&';
+          } else {
+            redirectUrl = this.baseUrl + '?' + this.facetTemplate + facetValue + '&';
+          }
         }
+        window.location.href = redirectUrl;
       }
-      window.location.href = redirectUrl;
     };
 
     return new YmmHandler();

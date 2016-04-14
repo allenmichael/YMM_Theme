@@ -24,8 +24,8 @@ define([
             if (url) _dispatcher.replace(url);
             _$body.removeClass('mz-loading');
             
-            YmmHandler.init();
-            YmmHandler.bindEventListeners();
+            // YmmHandler.init();
+            // YmmHandler.bindEventListeners();
         }
 
         function showError(error) {

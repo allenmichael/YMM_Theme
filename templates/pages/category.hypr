@@ -7,7 +7,7 @@
 {% block body-content %}
 
 {% require_script "pages/category" %}
-
+{% dropzone "category-page-top" scope="page" %}
 <div data-mz-category="{{model.categoryId}}" class="mz-l-container">
     {% include "pages/category-interior" %}
 </div>
